@@ -8,8 +8,11 @@
 <body>
 <div class="container-fluid text-center">
     <div><h2>Manage Users</h2></div>
-    <div>
+    <div class="m-2">
         <a class="h3" th:href="@{/users/new}">Add new Users</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
     </div>
     <div>
         <table class="table table-bordered">
