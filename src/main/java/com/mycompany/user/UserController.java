@@ -29,9 +29,15 @@ public class UserController {
     }
     @PostMapping("/users/save")
     public String saveUser(User user, RedirectAttributes ra){
-        service.save(user);
-        ra.addFlashAttribute("message", "The user has been saved successfully");
+        try{
+            service.save(user);
+            ra.addFlashAttribute("message", "The user has been saved successfully");
+        }catch (EmailAlreadyExistsException e){
+            ra.addFlashAttribute("message", e.getMessage());
+
+        }
         return "redirect:/users";
+
     }
 
     @GetMapping("/users/edit/{id}")
